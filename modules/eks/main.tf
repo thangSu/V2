@@ -28,7 +28,6 @@ module "eks" {
   cluster_name    = module.eks_cluster_label.id
   cluster_version = var.cluster_version
 
-  bootstrap_self_managed_addons = false
   cluster_addons = local.managed_addons
 
   # Optional
@@ -97,8 +96,6 @@ module "eks" {
       cidr_blocks = [var.secondary_cidr_block]   
     }
   }
-  cluster_zonal_shift_config = {
-    enabled = var.zonal_shift_config_enabled
-  }
+
   tags = module.eks_cluster_label.tags
 }

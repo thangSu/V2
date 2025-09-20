@@ -9,8 +9,10 @@ terraform {
       version = ">= 5.95, <= 6.0.0"
     }
   }
-  cloud { 
+    cloud { 
+    
     organization = "kyo_devops_lab" 
+
     workspaces { 
       name = "for-dev" 
     } 
