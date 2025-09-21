@@ -38,7 +38,7 @@ module "vpc_cni_irsa_label" {
 ##########################
 module "ebs_csi_driver_policy" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-policy"
-  version = "5.54.0"
+  version = "5.60.0"
   name        = module.ebs_csi_driver_iam_policy_label.id
   path        = "/"
   description = "EBS CSI Driver policy"
@@ -64,7 +64,7 @@ module "ebs_csi_driver_policy" {
 }
 module "ebs_csi_driver_irsa" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.54.0"
+  version = "5.60.0"
 
   role_name = module.ebs_csi_driver_irsa_label.id
 
@@ -82,13 +82,14 @@ module "ebs_csi_driver_irsa" {
   }
 
   tags = module.this.tags
+  
 }
 #########################
 # IRSA For ALB Addon #
 ##########################
 module "aws_loadbalancer_controller_irsa" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.54.0"
+  version = "5.60.0"
 
   role_name                              = module.alb_controller_irsa_label.id
   attach_load_balancer_controller_policy = true
@@ -107,7 +108,7 @@ module "aws_loadbalancer_controller_irsa" {
 ############################
 module "cluster_autoscaler_irsa" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.54.0"
+  version = "5.60.0"
 
   role_name                        = module.cluster_autoscaler_irsa_label.id
   attach_cluster_autoscaler_policy = true
