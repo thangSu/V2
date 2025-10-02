@@ -65,6 +65,6 @@ resource "aws_eip" "nat_gateway_eip" {
 resource "aws_nat_gateway" "nat_gateway" {
   depends_on    = [aws_subnet.subnets, aws_eip.nat_gateway_eip]
   allocation_id = aws_eip.nat_gateway_eip.id
-  subnet_id     = aws_subnet.subnets["public_subnet_1a"].id
+  subnet_id     = aws_subnet.subnets["public-subnet-1a"].id
   tags = module.nat_gw_label.tags
 }
