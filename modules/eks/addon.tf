@@ -37,48 +37,5 @@ locals {
     kube-proxy = {
       addon_version = var.cluster_addons.kube_proxy_addon_version
     }
-    # eks-pod-identity-agent = {
-    # }
-    # aws-ebs-csi-driver = {
-    #   addon_version            = var.cluster_addons.aws_ebs_csi_driver_addon_version
-    #   service_account_role_arn = module.ebs_csi_driver_irsa.iam_role_arn
-    #   configuration_values = jsonencode({
-    #     "controller" : {
-    #       "tolerations" : [
-    #         {
-    #           "key" : "dedicated",
-    #           "operator" : "Equal",
-    #           "value" : "infra",
-    #           "effect" : "NoSchedule"
-    #         }
-    #       ],
-    #       "nodeSelector" : {
-    #         "type" : "infra"
-    #       },
-    #       "extraVolumeTags" : {
-    #         "map-migrated" : "mig45206"
-    #       }
-    #     }
-    #   })
-    # }
-    # aws-efs-csi-driver = {
-    #   addon_version            = var.cluster_addons.aws_efs_csi_driver_addon_version
-    #   service_account_role_arn = module.efs_csi_driver_irsa.iam_role_arn
-    #   configuration_values = jsonencode({
-    #     "controller" : {
-    #       "tolerations" : [
-    #         {
-    #           "key" : "dedicated",
-    #           "operator" : "Equal",
-    #           "value" : "infra",
-    #           "effect" : "NoSchedule"
-    #         }
-    #       ],
-    #       "nodeSelector" : {
-    #         "type" : "infra"
-    #       },
-    #     }
-    #   })
-    # }
   }
 }
