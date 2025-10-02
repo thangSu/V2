@@ -87,17 +87,17 @@ locals {
 
     subnets = {
       public = {
-        public_subnet_1a = {
+        public-subnet-1a = {
           availability_zone = "ap-southeast-1a"
           cidr_block = "10.10.11.0/24"
           route_table = "public"
         }
-        public_subnet_1b = {
+        public-subnet-1b = {
           availability_zone = "ap-southeast-1b"
           cidr_block = "10.10.12.0/24"
           route_table = "public"
         }
-        public_subnet_1c = {
+        public-subnet-1c = {
           availability_zone = "ap-southeast-1c"
           cidr_block = "10.10.13.0/24"
           route_table = "public"
@@ -121,17 +121,17 @@ locals {
         }
       }
       data = {
-        data_subnet_1a = {
+        data-subnet-1a = {
           availability_zone = "ap-southeast-1a"
           cidr_block = "10.10.101.0/24"
           route_table = "data"
         }
-        data_subnet_1b = {
+        data-subnet-1b = {
           availability_zone = "ap-southeast-1b"
           cidr_block = "10.10.102.0/24"
           route_table = "data"
         }
-        data_subnet_1c = {
+        data-subnet-1c = {
           availability_zone = "ap-southeast-1c"
           cidr_block = "10.10.103.0/24"
           route_table = "data"

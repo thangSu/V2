@@ -3,7 +3,7 @@ module "secondary_cidr_label" {
   count = length(var.secondary_subnet_cidr_blocks)
   version = "0.24.1"
   context = module.this.context
-  attributes = ["secondary-cidr" , count.index ]
+  attributes = ["secondary-subnet" , count.index ]
   
 }
 

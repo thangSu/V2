@@ -49,8 +49,7 @@ resource "aws_subnet" "subnets" {
   cidr_block = each.value.cidr_block
   availability_zone = each.value.availability_zone
   tags = merge(
-    module.subnet_label[each.key].tags, 
-    { Name = "${each.key}" },
+    module.subnet_label[each.key].tags,
     can(regex("public", each.key)) ? { "kubernetes.io/role/public-elb" : 1 } : {}
   )
 }
