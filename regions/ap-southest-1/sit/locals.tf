@@ -104,17 +104,17 @@ locals {
         }
       }
       app = {
-        app_subnet_1a = {
+        app-subnet-1a = {
           availability_zone = "ap-southeast-1a"
           cidr_block = "10.10.51.0/24"
           route_table = "app"
         }
-        app_subnet_1b = {
+        app-subnet-1b = {
           availability_zone = "ap-southeast-1b"
           cidr_block = "10.10.52.0/24"
           route_table = "app"
         }
-        app_subnet_1c = {
+        app-subnet-1c = {
           availability_zone = "ap-southeast-1c"
           cidr_block = "10.10.53.0/24"
           route_table = "app"
