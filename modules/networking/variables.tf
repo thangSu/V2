@@ -25,10 +25,6 @@ variable "secondary_cidr_blocks" {
   type        = string
   default     = ""
 }
-variable "tags" {
-  description = "Tags to apply to the VPC and subnets"
-  type        = map(any)
-}
 
 variable "create_nat_gateway" {
   type = bool
@@ -40,5 +36,5 @@ variable "project-name" {
 }
 
 variable "route_tables" {
-  type = map(any)
+  type = list(string)
 }

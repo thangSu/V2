@@ -1,15 +1,31 @@
+module "ig_label" {
+  source  = "cloudposse/label/null"
+  version = "0.24.1"
+  context = module.this.context
+  attributes = ["route-tables"]
+  
+}
+
+module "route_table_label" {
+  source  = "cloudposse/label/null"
+  for_each = toset(var.route_tables)
+  version = "0.24.1"
+  context = module.this.context
+  attributes = [each.value, "rt"]
+  
+}
+
 
 resource "aws_internet_gateway" "internet_gateway" {
-
   vpc_id = aws_vpc.vpc.id
-  tags = merge(var.tags)
+  tags = module.ig_label.tags
   depends_on = [ aws_vpc.vpc ]
 }
 
 resource "aws_route_table" "route_tables" {
-  for_each = var.route_tables
+  for_each = toset(var.route_tables)
   vpc_id = aws_vpc.vpc.id
-  tags = merge(var.tags, {Name: var.route_tables[each.key]} )
+  tags = module.route_table_label[each.value].tags
 }
 
 resource "aws_route_table_association" "aws_route_table_association"{

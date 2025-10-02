@@ -22,18 +22,13 @@ module "network" {
   secondary_cidr_blocks = local.network.secondary_cidr_block
   route_tables = local.network.route_tables
   project-name = local.default.name
-  tags = local.default.tags
+  context = module.this.context
+  depends_on = [ module.this ]
 }
 locals {
   app_subnet_ids = [for k,v in local.network.subnets.app: module.network.subnet_ids[k]]
   app_subnet_cidrs = [for k,v in local.network.subnets.app: module.network.subnet_cidrs[k]]
 }
-# module "security_group" {
-#   source = "../../../modules/security-group"
-#   vpc_id = module.network.vpc_id
-#   security_groups = local.network.security_groups
-#   depends_on = [ local.network ]
-# }
 
 module "eks" {
   source = "../../../modules/eks"

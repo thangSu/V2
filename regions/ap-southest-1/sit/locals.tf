@@ -138,25 +138,9 @@ locals {
         }
       }
     }
-    route_tables = {
-      public = format("%s-%s", local.default.name, "public")
-      app =format("%s-%s", local.default.name,"app")
-      data =format("%s-%s", local.default.name,"db")
-    }
+    route_tables = ["public", "app", "data"]
     secondary_cidr_block = "100.10.0.0/20"
     secondary_subnets = ["100.10.0.0/23", "100.10.2.0/23", "100.10.4.0/23"]
     load_balancer_type = "elb"
-
-
-    # security_groups = {
-    #   "eks-security-groups" = {
-    #     ingress_rules = [for cidr in local.app_subnet_ids : {
-    #       description = "Allow access from ALB"
-    #       port        = 0
-    #       protocol    = "-1"
-    #       cidr        = cidr
-    #     }]
-    #   }
-    # }
   }
 }

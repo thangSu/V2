@@ -81,7 +81,7 @@ module "ebs_csi_driver_irsa" {
     }
   }
 
-  tags = module.this.tags
+  tags = module.ebs_csi_driver_irsa_label.tags
   
 }
 #########################
@@ -101,7 +101,7 @@ module "aws_loadbalancer_controller_irsa" {
     }
   }
 
-  tags = module.this.tags
+  tags = module.alb_controller_irsa_label.tags
 }
 ############################
 # IRSA For Cluster Autoscaler #
@@ -121,7 +121,7 @@ module "cluster_autoscaler_irsa" {
     }
   }
 
-  tags = module.this.tags
+  tags = module.cluster_autoscaler_irsa_label.tags
 }
 #########################
 # IRSA For VPC CNI Addon #
@@ -140,4 +140,5 @@ module "vpc_cni_irsa" {
       namespace_service_accounts = ["kube-system:aws-node"]
     }
   }
+  tags = module.vpc_cni_irsa_label.tags
 }

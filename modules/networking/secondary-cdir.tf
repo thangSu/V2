@@ -1,3 +1,12 @@
+module "secondary_cidr_label" {
+  source  = "cloudposse/label/null"
+  count = length(var.secondary_subnet_cidr_blocks)
+  version = "0.24.1"
+  context = module.this.context
+  attributes = ["secondary-cidr" , count.index ]
+  
+}
+
 # Create secondary CIDR blocks
 resource "aws_vpc_ipv4_cidr_block_association" "secondary_cidr_block" {
   vpc_id = aws_vpc.vpc.id
@@ -9,7 +18,7 @@ resource "aws_subnet" "secondary_subnets" {
 
   vpc_id = aws_vpc.vpc.id
   cidr_block = var.secondary_subnet_cidr_blocks[count.index]
-  availability_zone = data.aws_availability_zones.available.names[count.index]
-  tags = merge(var.tags, { Name = "secondary-${count.index}" }) 
+  availability_zone = data.aws_availability_zones.available.names[count.index % length(data.aws_availability_zones.available.names)]
+  tags = module.secondary_cidr_label[count.index].tags
   depends_on = [ aws_vpc_ipv4_cidr_block_association.secondary_cidr_block ]
 }
