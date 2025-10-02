@@ -6,7 +6,7 @@ locals {
     vpc-cni = {
       before_compute           = true
       addon_version            = var.cluster_addons.vpc_cni_addon_version
-      service_account_role_arn = module.vpc_cni_irsa.iam_role_arn
+      service_account_role_arn = resource.aws_iam_role.vpc_cni_irsa.arn
       configuration_values = jsonencode({
         # ENI Configuration for Secondary CIDR
         eniConfig = {
